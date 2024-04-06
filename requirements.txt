@@ -1,0 +1,9 @@
+# This is a comment
+# Comments are lines starting with the '#' symbol and are ignored by pip
+#
+PyMuPDF==1.18.10
+Pillow==8.4.0  # PIL library
+PyMuPDF==1.18.10
+pytesseract==0.3.8
+tabula-py==2.3.0  # tabula library
+python-docx==0.8.11
