@@ -1,8 +1,12 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM
+import torch
 
 # Load model and tokenizer
 tokenizer = AutoTokenizer.from_pretrained("EleutherAI/pythia-160m")
 model = AutoModelForCausalLM.from_pretrained("EleutherAI/pythia-160m")
+
+# Disable the warning messages
+torch.autograd.set_grad_enabled(False)
 
 while True:
     # Take user input for the prompt
@@ -25,6 +29,7 @@ while True:
         top_k=50,
         top_p=0.95,
         temperature=0.7,  # Adjust temperature for more or less creative text
+        pad_token_id=tokenizer.eos_token_id,  # Set pad_token_id to eos_token_id for open-end generation
     )
 
     # Decode and print the generated text
