@@ -16,6 +16,14 @@ while True:
     if prompt.lower() == "quit":
         print("Exiting...")
         break
+    elif prompt.lower() == "file":  # If user wants to input text from a file
+        file_path = input("Enter the path to the file: ")
+        try:
+            with open(file_path, "r") as file:
+                prompt = file.read()
+        except FileNotFoundError:
+            print("File not found. Please try again.")
+            continue
 
     # Encode the prompt
     input_ids = tokenizer.encode(prompt, return_tensors="pt")
