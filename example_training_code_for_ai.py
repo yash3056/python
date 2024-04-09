@@ -1,9 +1,11 @@
 import tensorflow as tf
 from tensorflow.keras import layers, models
+import numpy as np
 
 # Define the neural network architecture
 model = models.Sequential([
-    layers.Dense(64, activation='relu', input_shape=(784,)),
+    layers.Flatten(input_shape=(28, 28)),  # Flatten layer to convert input data from (28, 28) to (784,)
+    layers.Dense(64, activation='relu'),
     layers.Dense(64, activation='relu'),
     layers.Dense(10, activation='softmax')
 ])
@@ -16,6 +18,8 @@ model.compile(optimizer='adam',
 # Load and preprocess the dataset (Example: MNIST dataset)
 mnist = tf.keras.datasets.mnist
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
+
+# Normalize the input data
 x_train, x_test = x_train / 255.0, x_test / 255.0
 
 # Train the model
