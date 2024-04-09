@@ -1,9 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 from transformers import pipeline
-import os
 
-os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+# Load the sentence similarity pipeline
+pipe = pipeline("sentence-similarity", model="sentence-transformers/all-MiniLM-L6-v2")
 
 # Fetch website content
 def fetch_website_content(url):
@@ -27,12 +27,12 @@ def answer_question(url, question):
     if html_content:
         # Preprocess text
         text = preprocess_text(html_content)
-        # Use question answering pipeline from Hugging Face Transformers
-        qa_pipeline = pipeline("question-answering")
-        # Answer the question using the extracted text
-        answer = qa_pipeline(question=question, context=text)
-        return answer['answer']
-
+        # Compute similarity between question and text
+        similarity = pipe(question, text)
+        # Sort similarity scores and return the most relevant answer
+        most_similar = sorted(similarity, key=lambda x: x['score'], reverse=True)[0]
+        return most_similar['text']
+    
 # Example usage
 if __name__ == "__main__":
     url = "https://huggingface.co/docs/hub/sentence-transformers"  # Replace with the URL of the website you want to query
