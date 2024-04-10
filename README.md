@@ -38,6 +38,10 @@ Feel free to explore the code and use it as a learning tool. If you have any Pyt
     ```bash
     pip install -r requirements.txt
     ```
+3. UnInstall dependencies:
+    ```bash
+    python uninstall_all_pyton_libraries.py
+    ```
 
 ## Usage
 
