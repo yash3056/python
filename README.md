@@ -43,6 +43,12 @@ Feel free to explore the code and use it as a learning tool. If you have any Pyt
     python uninstall_all_pyton_libraries.py
     ```
 
+## Hugging face model
+Hugging face models are stored at location
+
+    ~.cache/huggingface/hub
+If windows then 
+    C:\Users\<username>\.cache\huggingface\hub
 ## Usage
 
 [Explain how to use your code. Provide examples and usage instructions.]
